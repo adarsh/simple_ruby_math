@@ -13,13 +13,8 @@ def return_max_value_of_array(array)
   max_value = nil
 
   array.each do |element|
-    if max_value.nil?
-      max_value = element
-    end
-
-    if element > max_value
-      max_value = element
-    end
+    if max_value.nil? then max_value = element end
+    if element > max_value then max_value = element end
   end
 
   puts "The max value is #{max_value} for the array #{array}"
