@@ -1,42 +1,30 @@
 #!/usr/bin/env ruby
 
 def print_odd_numbers(n)
-  print "Even numbers from zero to #{n}: "
-  (0..n).each { |number| print "#{number} " if (number % 2) == 1 }
-  puts
+  out = (0..n).inject([]) { |out, n| if n % 2 == 1 then out << n else out end }
+  puts "Odd numbers from 0 to #{n}: #{out}"
 end
 
 print_odd_numbers(30)
 
 
-def return_max_value_of_array(array)
-  max_value = nil
 
-  array.each do |element|
-    if max_value.nil? then max_value = element end
-    if element > max_value then max_value = element end
-  end
-
-  puts "The max value is #{max_value} for the array #{array}"
+def return_max_value_of_array(r)
+  maximum = r.inject { |max, n| if n > max then max = n else max end }
+  puts "The max value is #{maximum} for the array #{r}"
 end
 
-array = [1,4,6,8,99]
+array = [ 1, 4, 6, 8, 207]
 return_max_value_of_array(array)
 
 
+
 def multiplication_table(n)
-  results = []
-
-  (1..n).each do |row_index|
-    row = []
-    (1..n).each { |column_index| row << row_index * column_index }
-    results << row
+  results = (1..n).inject([]) do |collector, row_index|
+    collector << (1..n).inject([]) { |row, n| row << row_index * n }
   end
 
-  results.each do |row|
-    header = '%-3s ' * row.length
-    puts header % row
-  end
+  results.each { |row| puts '%-3s ' * row.length % row }
 end
 
-multiplication_table(5)
+multiplication_table(7)
