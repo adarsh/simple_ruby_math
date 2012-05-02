@@ -18,10 +18,9 @@ array = [ 1, 4, 6, 8, 207]
 return_max_value_of_array(array)
 
 
-
 def multiplication_table(n)
-  results = (1..n).inject([]) do |collector, row_index|
-    collector << (1..n).inject([]) { |row, n| row << row_index * n }
+  results = (1..n).map do |row_index|
+    (1..n).inject([]) { |row, n| row + [row_index * n] }
   end
 
   results.each { |row| puts '%-3s ' * row.length % row }
